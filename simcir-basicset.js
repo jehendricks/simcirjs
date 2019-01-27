@@ -674,6 +674,7 @@
   // register simple LED
   $s.registerDevice('LED', function(device) {
     var in1 = device.addInput();
+    var out1 = device.addOutput();
     var super_createUI = device.createUI;
     device.createUI = function() {
       super_createUI();
@@ -696,6 +697,7 @@
       device.$ui.on('inputValueChange', function() {
         $ledbase.attr('fill', isHot(in1.getValue() )? bHiColor : bLoColor);
         $led.attr('fill', isHot(in1.getValue() )? hiColor : loColor);
+        out1.setValue(in1.getValue());
       });
       device.doc = {
         params: [
